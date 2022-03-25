@@ -1,38 +1,133 @@
-.App {
-  text-align: center;
+:root {
+  --main-color: #027261;
+  --secondary-color: #3da8b6;
+  --hover-color: #e9e9e9;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  padding: none;
+  margin: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: 'Anton', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#main-container {
+  width: 95%;
+  margin: auto;
+}
+
+.row {
   display: flex;
   flex-direction: column;
+}
+
+.row label {
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.row input {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  border: 2px solid rgb(182, 182, 182);
+  outline: none;
+}
+
+.row input:focus {
+  border: 2px solid var(--main-color);
+}
+
+.long-button {
+  font-weight: bold;
+  padding: 0.4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  color: var(--main-color);
+}
+
+.long-button span:first-of-type {
+  margin-right: 0.6rem;
+  border: 1px solid var(--main-color);
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.long-button:hover {
+  cursor: pointer;
+  background-color: var(--hover-color);
+  border-radius: 5px;
+}
+
+.education-input {
+  border: 2px solid var(--main-color);
+  border-radius: 8px;
+  padding: 0.4rem;
+}
+
+.education-row {
+  border-top: 2px solid var(--main-color);
+  border-bottom: 2px solid var(--main-color);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.education-row-1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-row div {
+  line-height: 0.6rem;
+}
+
+.education-icons {
+  display: flex;
+  align-items: center;
+  color: var(--secondary-color);
+}
+
+.education-icons div {
+  padding: 0.4rem;
+  margin-left: 0.4rem;
+  border-radius: 50%;
+  width: 1.3rem;
+  height: 1.3rem;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.education-icons div:hover {
+  cursor: pointer;
+  background-color: var(--hover-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.school-name {
+  font-weight: bold;
+}
+
+.btn {
+  background-color: #fff;
+  border: 2px solid var(--secondary-color);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin: 1rem 0.5rem;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+  color: #fff;
 }

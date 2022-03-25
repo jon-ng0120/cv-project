@@ -4,7 +4,10 @@ const EducationInput = (props) => {
   const [isNew, setIsNew] = useState(true);
   const [enteredSchoolName, setEnteredSchoolName] = useState('');
   const [enteredDegree, setEnteredDegree] = useState('');
-  const [enteredDate, setEnteredDate] = useState('');
+  const [enteredCity, setEnteredCity] = useState('');
+  const [enteredProvince, setEnteredProvince] = useState('');
+  const [enteredDateFrom, setEnteredDateFrom] = useState('');
+  const [enteredDateTo, setEnteredDateTo] = useState('');
 
   const schoolNameHandler = (e) => {
     setEnteredSchoolName(e.target.value);
@@ -13,9 +16,18 @@ const EducationInput = (props) => {
   const degreeHandler = (e) => {
     setEnteredDegree(e.target.value);
   };
+  const cityHandler = (e) => {
+    setEnteredCity(e.target.value);
+  };
+  const provinceHandler = (e) => {
+    setEnteredProvince(e.target.value);
+  };
 
-  const dateHandler = (e) => {
-    setEnteredDate(e.target.value);
+  const dateFromHandler = (e) => {
+    setEnteredDateFrom(e.target.value);
+  };
+  const dateToHandler = (e) => {
+    setEnteredDateTo(e.target.value);
   };
 
   const submitHandler = (e) => {
@@ -23,20 +35,29 @@ const EducationInput = (props) => {
     const schoolData = {
       id: Date.now(),
       name: enteredSchoolName,
+      city: enteredCity,
+      province: enteredProvince,
       degree: enteredDegree,
-      date: enteredDate,
+      dateFrom: enteredDateFrom,
+      dateTo: enteredDateTo,
     };
     props.onEducationInputChange(schoolData);
     setEnteredSchoolName('');
     setEnteredDegree('');
-    setEnteredDate('');
+    setEnteredCity('');
+    setEnteredProvince('');
+    setEnteredDateFrom('');
+    setEnteredDateTo('');
     endInput();
   };
 
   const cancelInput = () => {
     setEnteredSchoolName('');
     setEnteredDegree('');
-    setEnteredDate('');
+    setEnteredCity('');
+    setEnteredProvince('');
+    setEnteredDateFrom('');
+    setEnteredDateTo('');
     endInput();
   };
 
@@ -68,8 +89,28 @@ const EducationInput = (props) => {
             <input type="text" onChange={degreeHandler} value={enteredDegree} />
           </div>
           <div className="row">
-            <label>Date</label>
-            <input type="date" onChange={dateHandler} value={enteredDate} />
+            <label>City</label>
+            <input type="text" onChange={cityHandler} value={enteredCity} />
+          </div>
+          <div className="row">
+            <label>Province</label>
+            <input
+              type="text"
+              onChange={provinceHandler}
+              value={enteredProvince}
+            />
+          </div>
+          <div className="row">
+            <label>Date From</label>
+            <input
+              type="date"
+              onChange={dateFromHandler}
+              value={enteredDateFrom}
+            />
+          </div>
+          <div className="row">
+            <label>Date To</label>
+            <input type="date" onChange={dateToHandler} value={enteredDateTo} />
           </div>
           <button className="btn">Save</button>
           <button type="button" onClick={cancelInput} className="btn">

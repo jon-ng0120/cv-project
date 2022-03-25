@@ -4,8 +4,13 @@ const EducationInputItem = (props) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const [inputSchoolName, setEnteredSchoolName] = useState(props.name);
+  const [inputSchoolCity, setEnteredSchoolCity] = useState(props.city);
+  const [inputSchoolProvince, setEnteredSchoolProvince] = useState(
+    props.province
+  );
   const [inputDegree, setEnteredDegree] = useState(props.degree);
-  const [inputDate, setEnteredDate] = useState(props.date);
+  const [inputDateFrom, setEnteredDateFrom] = useState(props.dateFrom);
+  const [inputDateTo, setEnteredDateTo] = useState(props.dateTo);
 
   const startEditing = () => setIsEditing(true);
 
@@ -19,16 +24,31 @@ const EducationInputItem = (props) => {
     setEnteredDegree(e.target.value);
   };
 
-  const dateHandler = (e) => {
-    setEnteredDate(e.target.value);
+  const cityHandler = (e) => {
+    setEnteredSchoolCity(e.target.value);
+  };
+
+  const provinceHandler = (e) => {
+    setEnteredSchoolProvince(e.target.value);
+  };
+
+  const dateFromHandler = (e) => {
+    setEnteredDateFrom(e.target.value);
+  };
+
+  const dateToHandler = (e) => {
+    setEnteredDateTo(e.target.value);
   };
 
   const educationEditHandler = () => {
     const editedSchoolData = {
       id: props.id,
       name: inputSchoolName,
+      city: inputSchoolCity,
+      province: inputSchoolProvince,
       degree: inputDegree,
-      date: inputDate,
+      dateFrom: inputDateFrom,
+      dateTo: inputDateTo,
     };
     props.editSchoolHandler(props.id, editedSchoolData);
     stopEditing();
@@ -46,12 +66,28 @@ const EducationInputItem = (props) => {
           />
         </div>
         <div className="row">
+          <label>City</label>
+          <input type="text" value={inputSchoolCity} onChange={cityHandler} />
+        </div>
+        <div className="row">
+          <label>Province</label>
+          <input
+            type="text"
+            value={inputSchoolProvince}
+            onChange={provinceHandler}
+          />
+        </div>
+        <div className="row">
           <label>Degree</label>
           <input type="text" value={inputDegree} onChange={degreeHandler} />
         </div>
         <div className="row">
-          <label>Date</label>
-          <input type="date" value={inputDate} onChange={dateHandler} />
+          <label>Date From</label>
+          <input type="date" value={inputDateFrom} onChange={dateFromHandler} />
+        </div>
+        <div className="row">
+          <label>Date To</label>
+          <input type="date" value={inputDateTo} onChange={dateToHandler} />
         </div>
         <button type="button" onClick={educationEditHandler}>
           Save
@@ -66,13 +102,13 @@ const EducationInputItem = (props) => {
             <p className="school-name">{inputSchoolName}</p>
             <div className="education-icons">
               <div>
-                <span class="material-icons" onClick={startEditing}>
+                <span className="material-icons" onClick={startEditing}>
                   edit
                 </span>
               </div>
               <div>
                 <span
-                  class="material-icons"
+                  className="material-icons"
                   onClick={() => props.deleteSchoolHandler(props.id)}
                 >
                   delete
@@ -82,19 +118,14 @@ const EducationInputItem = (props) => {
           </div>
         </div>
         <div className="row">
-          {inputDegree || ''}
-          {/* <p>{inputDegree}</p> */}
-          <p>{inputDate}</p>
+          <p>
+            {inputSchoolCity}, {inputSchoolProvince}
+          </p>
+          {<p>{inputDegree || ''}</p>}
+          <p>
+            {inputDateFrom} to {inputDateTo}
+          </p>
         </div>
-        {/* <button type="button" onClick={startEditing} className="btn">
-          Edit
-        </button> */}
-        {/* <button
-          onClick={() => props.deleteSchoolHandler(props.id)}
-          className="btn"
-        >
-          Delete
-        </button> */}
       </div>
     );
   }

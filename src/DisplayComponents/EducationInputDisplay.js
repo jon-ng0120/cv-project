@@ -8,8 +8,11 @@ const EducationInputDisplay = (props) => {
         key={school.id}
         id={school.id}
         name={school.name}
+        city={school.city}
+        province={school.province}
         degree={school.degree}
-        date={school.date}
+        dateFrom={school.dateFrom}
+        dateTo={school.dateTo}
         deleteSchoolHandler={props.deleteSchool}
         editSchoolHandler={props.editSchool}
       />

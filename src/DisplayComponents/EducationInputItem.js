@@ -40,6 +40,16 @@ const EducationInputItem = (props) => {
     setEnteredDateTo(e.target.value);
   };
 
+  const cancelEdit = () => {
+    setEnteredSchoolName(props.name);
+    setEnteredSchoolCity(props.city);
+    setEnteredSchoolProvince(props.province);
+    setEnteredDegree(props.degree);
+    setEnteredDateFrom(props.dateFrom);
+    setEnteredDateTo(props.dateTo);
+    stopEditing();
+  };
+
   const educationEditHandler = () => {
     const editedSchoolData = {
       id: props.id,
@@ -89,8 +99,11 @@ const EducationInputItem = (props) => {
           <label>Date To</label>
           <input type="date" value={inputDateTo} onChange={dateToHandler} />
         </div>
-        <button type="button" onClick={educationEditHandler}>
+        <button className="btn" type="button" onClick={educationEditHandler}>
           Save
+        </button>
+        <button className="btn" type="button" onClick={cancelEdit}>
+          Cancel
         </button>
       </div>
     );

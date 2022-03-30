@@ -3,8 +3,8 @@ import React from 'react';
 const EducationItem = (props) => {
   return (
     <div>
-      <div>
-        <p>School Name</p>
+      {/* <div>
+        <p>Job Name</p>
         <p>{props.name}</p>
       </div>
       <div>
@@ -14,7 +14,7 @@ const EducationItem = (props) => {
       <div>
         <p>Date</p>
         <p>{props.date}</p>
-      </div>
+      </div> */}
     </div>
   );
 };

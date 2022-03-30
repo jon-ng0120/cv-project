@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 
-const EducationInputItem = (props) => {
+const ExperienceInputItem = (props) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const [inputSchoolName, setEnteredSchoolName] = useState(props.name);
-  const [inputSchoolCity, setEnteredSchoolCity] = useState(props.city);
-  const [inputSchoolProvince, setEnteredSchoolProvince] = useState(
-    props.province
-  );
-  const [inputDegree, setEnteredDegree] = useState(props.degree);
+  const [inputJobTitle, setEnteredJobTitle] = useState(props.title);
+  const [inputCompany, setEnteredCompany] = useState(props.company);
+  const [inputJobCity, setEnteredJobCity] = useState(props.city);
+  const [inputJobProvince, setEnteredJobProvince] = useState(props.province);
   const [inputDateFrom, setEnteredDateFrom] = useState(props.dateFrom);
   const [inputDateTo, setEnteredDateTo] = useState(props.dateTo);
 
@@ -16,20 +14,20 @@ const EducationInputItem = (props) => {
 
   const stopEditing = () => setIsEditing(false);
 
-  const schoolNameHandler = (e) => {
-    setEnteredSchoolName(e.target.value);
+  const jobTitleHandler = (e) => {
+    setEnteredJobTitle(e.target.value);
   };
 
-  const degreeHandler = (e) => {
-    setEnteredDegree(e.target.value);
+  const companyHandler = (e) => {
+    setEnteredCompany(e.target.value);
   };
 
   const cityHandler = (e) => {
-    setEnteredSchoolCity(e.target.value);
+    setEnteredJobCity(e.target.value);
   };
 
   const provinceHandler = (e) => {
-    setEnteredSchoolProvince(e.target.value);
+    setEnteredJobProvince(e.target.value);
   };
 
   const dateFromHandler = (e) => {
@@ -41,55 +39,51 @@ const EducationInputItem = (props) => {
   };
 
   const cancelEdit = () => {
-    setEnteredSchoolName(props.name);
-    setEnteredSchoolCity(props.city);
-    setEnteredSchoolProvince(props.province);
-    setEnteredDegree(props.degree);
+    setEnteredJobTitle(props.name);
+    setEnteredCompany(props.city);
+    setEnteredJobProvince(props.province);
+    setEnteredCompany(props.degree);
     setEnteredDateFrom(props.dateFrom);
     setEnteredDateTo(props.dateTo);
     stopEditing();
   };
 
-  const educationEditHandler = () => {
-    const editedSchoolData = {
+  const experienceEditHandler = () => {
+    const editedExperienceData = {
       id: props.id,
-      name: inputSchoolName,
-      city: inputSchoolCity,
-      province: inputSchoolProvince,
-      degree: inputDegree,
+      name: inputJobTitle,
+      company: inputCompany,
+      city: inputJobCity,
+      province: inputJobProvince,
       dateFrom: inputDateFrom,
       dateTo: inputDateTo,
     };
-    props.editSchoolHandler(props.id, editedSchoolData);
+    props.editExperienceHandler(props.id, editedExperienceData);
     stopEditing();
   };
 
   if (isEditing) {
     return (
-      <div className="education-row">
+      <div className="form-row">
         <div className="row">
-          <label>School Name</label>
-          <input
-            type="text"
-            value={inputSchoolName}
-            onChange={schoolNameHandler}
-          />
+          <label>Job Title</label>
+          <input type="text" value={inputJobTitle} onChange={jobTitleHandler} />
+        </div>
+        <div className="row">
+          <label>Company</label>
+          <input type="text" value={inputCompany} onChange={companyHandler} />
         </div>
         <div className="row">
           <label>City</label>
-          <input type="text" value={inputSchoolCity} onChange={cityHandler} />
+          <input type="text" value={inputJobCity} onChange={cityHandler} />
         </div>
         <div className="row">
           <label>Province</label>
           <input
             type="text"
-            value={inputSchoolProvince}
+            value={inputJobProvince}
             onChange={provinceHandler}
           />
-        </div>
-        <div className="row">
-          <label>Degree</label>
-          <input type="text" value={inputDegree} onChange={degreeHandler} />
         </div>
         <div className="row">
           <label>Date From</label>
@@ -99,7 +93,7 @@ const EducationInputItem = (props) => {
           <label>Date To</label>
           <input type="date" value={inputDateTo} onChange={dateToHandler} />
         </div>
-        <button className="btn" type="button" onClick={educationEditHandler}>
+        <button className="btn" type="button" onClick={experienceEditHandler}>
           Save
         </button>
         <button className="btn" type="button" onClick={cancelEdit}>
@@ -109,11 +103,11 @@ const EducationInputItem = (props) => {
     );
   } else {
     return (
-      <div className="education-row">
+      <div className="form-row">
         <div className="row">
-          <div className="education-row-1">
-            <p className="school-name">{inputSchoolName}</p>
-            <div className="education-icons">
+          <div className="form-row-1">
+            <p className="school-name">{inputJobTitle}</p>
+            <div className="form-icons">
               <div>
                 <span className="material-icons" onClick={startEditing}>
                   edit
@@ -122,7 +116,7 @@ const EducationInputItem = (props) => {
               <div>
                 <span
                   className="material-icons"
-                  onClick={() => props.deleteSchoolHandler(props.id)}
+                  onClick={() => props.deleteExperienceHandler(props.id)}
                 >
                   delete
                 </span>
@@ -132,9 +126,8 @@ const EducationInputItem = (props) => {
         </div>
         <div className="row">
           <p>
-            {inputSchoolCity}, {inputSchoolProvince}
+            {inputCompany}, {inputJobCity} {inputJobProvince}
           </p>
-          {<p>{inputDegree || ''}</p>}
           <p>
             {inputDateFrom} to {inputDateTo}
           </p>
@@ -144,4 +137,4 @@ const EducationInputItem = (props) => {
   }
 };
 
-export default EducationInputItem;
+export default ExperienceInputItem;

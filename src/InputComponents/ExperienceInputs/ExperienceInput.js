@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 
-const EducationInput = (props) => {
+const ExperienceInput = (props) => {
   const [isNew, setIsNew] = useState(true);
-  const [enteredSchoolName, setEnteredSchoolName] = useState('');
-  const [enteredDegree, setEnteredDegree] = useState('');
+  const [enteredtitle, setEnteredtitle] = useState('');
+  const [enteredCompany, setEnteredCompany] = useState('');
   const [enteredCity, setEnteredCity] = useState('');
   const [enteredProvince, setEnteredProvince] = useState('');
   const [enteredDateFrom, setEnteredDateFrom] = useState('');
   const [enteredDateTo, setEnteredDateTo] = useState('');
 
-  const schoolNameHandler = (e) => {
-    setEnteredSchoolName(e.target.value);
+  const titleHandler = (e) => {
+    setEnteredtitle(e.target.value);
   };
 
-  const degreeHandler = (e) => {
-    setEnteredDegree(e.target.value);
+  const companyHandler = (e) => {
+    setEnteredCompany(e.target.value);
   };
   const cityHandler = (e) => {
     setEnteredCity(e.target.value);
@@ -34,16 +34,16 @@ const EducationInput = (props) => {
     e.preventDefault();
     const schoolData = {
       id: Date.now(),
-      name: enteredSchoolName,
+      title: enteredtitle,
       city: enteredCity,
       province: enteredProvince,
-      degree: enteredDegree,
+      company: enteredCompany,
       dateFrom: enteredDateFrom,
       dateTo: enteredDateTo,
     };
-    props.onEducationInputChange(schoolData);
-    setEnteredSchoolName('');
-    setEnteredDegree('');
+    props.onExperienceInputChange(schoolData);
+    setEnteredtitle('');
+    setEnteredCompany('');
     setEnteredCity('');
     setEnteredProvince('');
     setEnteredDateFrom('');
@@ -52,8 +52,8 @@ const EducationInput = (props) => {
   };
 
   const cancelInput = () => {
-    setEnteredSchoolName('');
-    setEnteredDegree('');
+    setEnteredtitle('');
+    setEnteredCompany('');
     setEnteredCity('');
     setEnteredProvince('');
     setEnteredDateFrom('');
@@ -67,26 +67,26 @@ const EducationInput = (props) => {
 
   return (
     <div>
-      <h1>Education</h1>
+      <h1>Experience</h1>
       {isNew && (
         <div className="long-button" onClick={startInput}>
           <span>+</span>
-          <span>Add Education</span>
+          <span>Add Experience</span>
         </div>
       )}
       {!isNew && (
-        <form onSubmit={submitHandler} className="education-input">
+        <form onSubmit={submitHandler} className="form-input">
           <div className="row">
-            <label>School Name</label>
-            <input
-              type="text"
-              onChange={schoolNameHandler}
-              value={enteredSchoolName}
-            />
+            <label>Job Title</label>
+            <input type="text" onChange={titleHandler} value={enteredtitle} />
           </div>
           <div className="row">
-            <label>Degree</label>
-            <input type="text" onChange={degreeHandler} value={enteredDegree} />
+            <label>Company</label>
+            <input
+              type="text"
+              onChange={companyHandler}
+              value={enteredCompany}
+            />
           </div>
           <div className="row">
             <label>City</label>
@@ -122,4 +122,4 @@ const EducationInput = (props) => {
   );
 };
 
-export default EducationInput;
+export default ExperienceInput;

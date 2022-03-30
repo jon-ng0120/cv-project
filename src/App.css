@@ -68,35 +68,35 @@ body {
   border-radius: 5px;
 }
 
-.education-input {
+.form-input {
   border: 2px solid var(--main-color);
   border-radius: 8px;
   padding: 0.4rem;
 }
 
-.education-row {
+.form-row {
   border-top: 2px solid var(--main-color);
   border-bottom: 2px solid var(--main-color);
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.education-row-1 {
+.form-row-1 {
   display: flex;
   justify-content: space-between;
 }
 
-.education-row div {
+.form-row div {
   line-height: 0.6rem;
 }
 
-.education-icons {
+.form-icons {
   display: flex;
   align-items: center;
   color: var(--secondary-color);
 }
 
-.education-icons div {
+.form-icons div {
   padding: 0.4rem;
   margin-left: 0.4rem;
   border-radius: 50%;
@@ -107,7 +107,7 @@ body {
   justify-content: center;
 }
 
-.education-icons div:hover {
+.form-icons div:hover {
   cursor: pointer;
   background-color: var(--hover-color);
 }

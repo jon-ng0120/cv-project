@@ -3,18 +3,22 @@
 import React, { useState } from 'react';
 import './App.css';
 import GeneralInput from './InputComponents/GeneralInput';
-import EducationInput from './InputComponents/EducationInput';
-import EducationInputDisplay from './DisplayComponents/EducationInputDisplay';
+import EducationInput from './InputComponents/EducationInputs/EducationInput';
+import EducationInputDisplay from './InputComponents/EducationInputs/EducationInputDisplay';
 import GeneralDisplay from './DisplayComponents/GeneralDisplay';
 import EducationDisplay from './DisplayComponents/EducationDisplay';
+import ExperienceInput from './InputComponents/ExperienceInputs/ExperienceInput';
+import ExperienceInputDisplay from './InputComponents/ExperienceInputs/ExperienceInputDisplay';
 
 const App = () => {
+  // GENERAL COMPONENTS HANDLERS
   const [generalInputData, setGeneralInputData] = useState('');
-  const [educationInputData, setEducationInputData] = useState([]);
-
   const generalInputHandler = (generalData) => {
     setGeneralInputData(generalData);
   };
+
+  // EDUCATION COMPONENTS HANDLERS
+  const [educationInputData, setEducationInputData] = useState([]);
 
   const educationInputHandler = (educationData) => {
     setEducationInputData((prevEducation) => {
@@ -38,6 +42,33 @@ const App = () => {
     setEducationInputData(newEducationList);
   };
 
+  // EXPERIENCE COMPONENT HANDLERS
+  const [experienceInputData, setExperienceInputData] = useState([]);
+
+  const experienceInputHandler = (experienceData) => {
+    setExperienceInputData((prevExperience) => {
+      return [...prevExperience, experienceData];
+    });
+  };
+
+  const editExperienceHandler = (experienceId, experienceData) => {
+    const experienceList = experienceInputData;
+    const updatedExperienceList = experienceList.map((experience) =>
+      experience.id === experienceId
+        ? { ...experience, ...experienceData }
+        : experience
+    );
+    setExperienceInputData(updatedExperienceList);
+  };
+
+  const deleteExperienceHandler = (experienceId) => {
+    const experienceList = experienceInputData;
+    const newExperienceList = experienceList.filter(
+      (experience) => experience.id !== experienceId
+    );
+    setExperienceInputData(newExperienceList);
+  };
+
   return (
     <div id="main-container">
       <GeneralInput onGeneralInputChange={generalInputHandler} />
@@ -46,6 +77,12 @@ const App = () => {
         educationData={educationInputData}
         deleteSchool={deleteEducationHandler}
         editSchool={editEducationHandler}
+      />
+      <ExperienceInput onExperienceInputChange={experienceInputHandler} />
+      <ExperienceInputDisplay
+        experienceData={experienceInputData}
+        deleteExperience={deleteExperienceHandler}
+        editExperience={editExperienceHandler}
       />
       <GeneralDisplay generalData={generalInputData} />
       <EducationDisplay educationData={educationInputData} />

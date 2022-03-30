@@ -1,5 +1,5 @@
 import React from 'react';
-import EducationItem from './EducationItem';
+import EducationItem from '../InputComponents/EducationInputs/EducationItem';
 
 const EducationDisplay = (props) => {
   const educationList = props.educationData.map((school) => {

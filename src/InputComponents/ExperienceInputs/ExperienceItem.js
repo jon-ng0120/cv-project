@@ -4,16 +4,16 @@ const ExperienceItem = (props) => {
   return (
     <div>
       <div>
-        <p>School Name</p>
-        <p>{props.name}</p>
+        <p>Job Title</p>
+        <p>{props.title}</p>
       </div>
       <div>
-        <p>Degree</p>
-        <p>{props.degree}</p>
+        <p>Company</p>
+        <p>{props.company}</p>
       </div>
       <div>
-        <p>Date</p>
-        <p>{props.date}</p>
+        <p>Date From</p>
+        <p>{props.dateFrom}</p>
       </div>
     </div>
   );

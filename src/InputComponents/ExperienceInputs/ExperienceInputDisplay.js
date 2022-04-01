@@ -8,8 +8,7 @@ const ExperienceInputDisplay = (props) => {
         key={experience.id}
         id={experience.id}
         title={experience.title}
-        city={experience.city}
-        province={experience.province}
+        location={experience.location}
         company={experience.company}
         dateFrom={experience.dateFrom}
         dateTo={experience.dateTo}

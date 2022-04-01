@@ -8,8 +8,7 @@ const EducationInputDisplay = (props) => {
         key={school.id}
         id={school.id}
         name={school.name}
-        city={school.city}
-        province={school.province}
+        location={school.location}
         degree={school.degree}
         dateFrom={school.dateFrom}
         dateTo={school.dateTo}

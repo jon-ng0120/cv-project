@@ -5,8 +5,7 @@ const ExperienceInputItem = (props) => {
 
   const [inputJobTitle, setEnteredJobTitle] = useState(props.title);
   const [inputCompany, setEnteredCompany] = useState(props.company);
-  const [inputJobCity, setEnteredJobCity] = useState(props.city);
-  const [inputJobProvince, setEnteredJobProvince] = useState(props.province);
+  const [inputJobLocation, setEnteredJobLocation] = useState(props.location);
   const [inputDateFrom, setEnteredDateFrom] = useState(props.dateFrom);
   const [inputDateTo, setEnteredDateTo] = useState(props.dateTo);
 
@@ -22,12 +21,8 @@ const ExperienceInputItem = (props) => {
     setEnteredCompany(e.target.value);
   };
 
-  const cityHandler = (e) => {
-    setEnteredJobCity(e.target.value);
-  };
-
-  const provinceHandler = (e) => {
-    setEnteredJobProvince(e.target.value);
+  const locationHandler = (e) => {
+    setEnteredJobLocation(e.target.value);
   };
 
   const dateFromHandler = (e) => {
@@ -39,10 +34,9 @@ const ExperienceInputItem = (props) => {
   };
 
   const cancelEdit = () => {
-    setEnteredJobTitle(props.name);
-    setEnteredCompany(props.city);
-    setEnteredJobProvince(props.province);
-    setEnteredCompany(props.degree);
+    setEnteredJobTitle(props.title);
+    setEnteredJobLocation(props.location);
+    setEnteredCompany(props.company);
     setEnteredDateFrom(props.dateFrom);
     setEnteredDateTo(props.dateTo);
     stopEditing();
@@ -51,10 +45,9 @@ const ExperienceInputItem = (props) => {
   const experienceEditHandler = () => {
     const editedExperienceData = {
       id: props.id,
-      name: inputJobTitle,
+      title: inputJobTitle,
       company: inputCompany,
-      city: inputJobCity,
-      province: inputJobProvince,
+      location: inputJobLocation,
       dateFrom: inputDateFrom,
       dateTo: inputDateTo,
     };
@@ -74,15 +67,11 @@ const ExperienceInputItem = (props) => {
           <input type="text" value={inputCompany} onChange={companyHandler} />
         </div>
         <div className="row">
-          <label>City</label>
-          <input type="text" value={inputJobCity} onChange={cityHandler} />
-        </div>
-        <div className="row">
-          <label>Province</label>
+          <label>Location</label>
           <input
             type="text"
-            value={inputJobProvince}
-            onChange={provinceHandler}
+            value={inputJobLocation}
+            onChange={locationHandler}
           />
         </div>
         <div className="row">
@@ -106,16 +95,16 @@ const ExperienceInputItem = (props) => {
       <div className="form-row">
         <div className="row">
           <div className="form-row-1">
-            <p className="school-name">{inputJobTitle}</p>
+            <p className="item-header">{inputJobTitle}</p>
             <div className="form-icons">
               <div>
-                <span className="material-icons" onClick={startEditing}>
+                <span className="material-icons edit" onClick={startEditing}>
                   edit
                 </span>
               </div>
               <div>
                 <span
-                  className="material-icons"
+                  className="material-icons delete"
                   onClick={() => props.deleteExperienceHandler(props.id)}
                 >
                   delete
@@ -126,7 +115,7 @@ const ExperienceInputItem = (props) => {
         </div>
         <div className="row">
           <p>
-            {inputCompany}, {inputJobCity} {inputJobProvince}
+            {inputCompany}, {inputJobLocation}
           </p>
           <p>
             {inputDateFrom} to {inputDateTo}

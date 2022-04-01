@@ -4,8 +4,7 @@ const ExperienceInput = (props) => {
   const [isNew, setIsNew] = useState(true);
   const [enteredtitle, setEnteredtitle] = useState('');
   const [enteredCompany, setEnteredCompany] = useState('');
-  const [enteredCity, setEnteredCity] = useState('');
-  const [enteredProvince, setEnteredProvince] = useState('');
+  const [enteredLocation, setEnteredLocation] = useState('');
   const [enteredDateFrom, setEnteredDateFrom] = useState('');
   const [enteredDateTo, setEnteredDateTo] = useState('');
 
@@ -16,11 +15,8 @@ const ExperienceInput = (props) => {
   const companyHandler = (e) => {
     setEnteredCompany(e.target.value);
   };
-  const cityHandler = (e) => {
-    setEnteredCity(e.target.value);
-  };
-  const provinceHandler = (e) => {
-    setEnteredProvince(e.target.value);
+  const locationHandler = (e) => {
+    setEnteredLocation(e.target.value);
   };
 
   const dateFromHandler = (e) => {
@@ -32,20 +28,18 @@ const ExperienceInput = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const schoolData = {
+    const experienceData = {
       id: Date.now(),
       title: enteredtitle,
-      city: enteredCity,
-      province: enteredProvince,
+      location: enteredLocation,
       company: enteredCompany,
       dateFrom: enteredDateFrom,
       dateTo: enteredDateTo,
     };
-    props.onExperienceInputChange(schoolData);
+    props.onExperienceInputChange(experienceData);
     setEnteredtitle('');
     setEnteredCompany('');
-    setEnteredCity('');
-    setEnteredProvince('');
+    setEnteredLocation('');
     setEnteredDateFrom('');
     setEnteredDateTo('');
     endInput();
@@ -54,8 +48,7 @@ const ExperienceInput = (props) => {
   const cancelInput = () => {
     setEnteredtitle('');
     setEnteredCompany('');
-    setEnteredCity('');
-    setEnteredProvince('');
+    setEnteredLocation('');
     setEnteredDateFrom('');
     setEnteredDateTo('');
     endInput();
@@ -89,15 +82,11 @@ const ExperienceInput = (props) => {
             />
           </div>
           <div className="row">
-            <label>City</label>
-            <input type="text" onChange={cityHandler} value={enteredCity} />
-          </div>
-          <div className="row">
-            <label>Province</label>
+            <label>Location</label>
             <input
               type="text"
-              onChange={provinceHandler}
-              value={enteredProvince}
+              onChange={locationHandler}
+              value={enteredLocation}
             />
           </div>
           <div className="row">

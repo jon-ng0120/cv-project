@@ -7,6 +7,7 @@ import EducationInput from './InputComponents/EducationInputs/EducationInput';
 import EducationInputDisplay from './InputComponents/EducationInputs/EducationInputDisplay';
 import GeneralDisplay from './DisplayComponents/GeneralDisplay';
 import EducationDisplay from './DisplayComponents/EducationDisplay';
+import ExperienceDisplay from './DisplayComponents/ExperienceDisplay';
 import ExperienceInput from './InputComponents/ExperienceInputs/ExperienceInput';
 import ExperienceInputDisplay from './InputComponents/ExperienceInputs/ExperienceInputDisplay';
 
@@ -71,21 +72,25 @@ const App = () => {
 
   return (
     <div id="main-container">
-      <GeneralInput onGeneralInputChange={generalInputHandler} />
-      <EducationInput onEducationInputChange={educationInputHandler} />
-      <EducationInputDisplay
-        educationData={educationInputData}
-        deleteSchool={deleteEducationHandler}
-        editSchool={editEducationHandler}
-      />
-      <ExperienceInput onExperienceInputChange={experienceInputHandler} />
-      <ExperienceInputDisplay
-        experienceData={experienceInputData}
-        deleteExperience={deleteExperienceHandler}
-        editExperience={editExperienceHandler}
-      />
+      <div id="inputs-container">
+        <GeneralInput onGeneralInputChange={generalInputHandler} />
+        <EducationInput onEducationInputChange={educationInputHandler} />
+        <EducationInputDisplay
+          educationData={educationInputData}
+          deleteSchool={deleteEducationHandler}
+          editSchool={editEducationHandler}
+        />
+        <ExperienceInput onExperienceInputChange={experienceInputHandler} />
+        <ExperienceInputDisplay
+          experienceData={experienceInputData}
+          deleteExperience={deleteExperienceHandler}
+          editExperience={editExperienceHandler}
+        />
+      </div>
+
       <GeneralDisplay generalData={generalInputData} />
       <EducationDisplay educationData={educationInputData} />
+      <ExperienceDisplay experienceData={experienceInputData} />
     </div>
   );
 };

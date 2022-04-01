@@ -3,7 +3,7 @@ import React from 'react';
 const EducationItem = (props) => {
   return (
     <div>
-      {/* <div>
+      <div>
         <p>Job Name</p>
         <p>{props.name}</p>
       </div>
@@ -14,7 +14,7 @@ const EducationItem = (props) => {
       <div>
         <p>Date</p>
         <p>{props.date}</p>
-      </div> */}
+      </div>
     </div>
   );
 };

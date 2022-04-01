@@ -4,8 +4,7 @@ const EducationInput = (props) => {
   const [isNew, setIsNew] = useState(true);
   const [enteredSchoolName, setEnteredSchoolName] = useState('');
   const [enteredDegree, setEnteredDegree] = useState('');
-  const [enteredCity, setEnteredCity] = useState('');
-  const [enteredProvince, setEnteredProvince] = useState('');
+  const [enteredLocation, setEnteredLocation] = useState('');
   const [enteredDateFrom, setEnteredDateFrom] = useState('');
   const [enteredDateTo, setEnteredDateTo] = useState('');
 
@@ -16,12 +15,12 @@ const EducationInput = (props) => {
   const degreeHandler = (e) => {
     setEnteredDegree(e.target.value);
   };
-  const cityHandler = (e) => {
-    setEnteredCity(e.target.value);
+  const locationHandler = (e) => {
+    setEnteredLocation(e.target.value);
   };
-  const provinceHandler = (e) => {
-    setEnteredProvince(e.target.value);
-  };
+  // const provinceHandler = (e) => {
+  //   setEnteredProvince(e.target.value);
+  // };
 
   const dateFromHandler = (e) => {
     setEnteredDateFrom(e.target.value);
@@ -35,8 +34,7 @@ const EducationInput = (props) => {
     const schoolData = {
       id: Date.now(),
       name: enteredSchoolName,
-      city: enteredCity,
-      province: enteredProvince,
+      location: enteredLocation,
       degree: enteredDegree,
       dateFrom: enteredDateFrom,
       dateTo: enteredDateTo,
@@ -44,8 +42,7 @@ const EducationInput = (props) => {
     props.onEducationInputChange(schoolData);
     setEnteredSchoolName('');
     setEnteredDegree('');
-    setEnteredCity('');
-    setEnteredProvince('');
+    setEnteredLocation('');
     setEnteredDateFrom('');
     setEnteredDateTo('');
     endInput();
@@ -54,8 +51,7 @@ const EducationInput = (props) => {
   const cancelInput = () => {
     setEnteredSchoolName('');
     setEnteredDegree('');
-    setEnteredCity('');
-    setEnteredProvince('');
+    setEnteredLocation('');
     setEnteredDateFrom('');
     setEnteredDateTo('');
     endInput();
@@ -89,17 +85,14 @@ const EducationInput = (props) => {
             <input type="text" onChange={degreeHandler} value={enteredDegree} />
           </div>
           <div className="row">
-            <label>City</label>
-            <input type="text" onChange={cityHandler} value={enteredCity} />
-          </div>
-          <div className="row">
-            <label>Province</label>
+            <label>Location</label>
             <input
               type="text"
-              onChange={provinceHandler}
-              value={enteredProvince}
+              onChange={locationHandler}
+              value={enteredLocation}
             />
           </div>
+
           <div className="row">
             <label>Date From</label>
             <input

@@ -4,9 +4,8 @@ const EducationInputItem = (props) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const [inputSchoolName, setEnteredSchoolName] = useState(props.name);
-  const [inputSchoolCity, setEnteredSchoolCity] = useState(props.city);
-  const [inputSchoolProvince, setEnteredSchoolProvince] = useState(
-    props.province
+  const [inputSchoolLocation, setEnteredSchoolLocation] = useState(
+    props.location
   );
   const [inputDegree, setEnteredDegree] = useState(props.degree);
   const [inputDateFrom, setEnteredDateFrom] = useState(props.dateFrom);
@@ -24,12 +23,8 @@ const EducationInputItem = (props) => {
     setEnteredDegree(e.target.value);
   };
 
-  const cityHandler = (e) => {
-    setEnteredSchoolCity(e.target.value);
-  };
-
-  const provinceHandler = (e) => {
-    setEnteredSchoolProvince(e.target.value);
+  const locationHandler = (e) => {
+    setEnteredSchoolLocation(e.target.value);
   };
 
   const dateFromHandler = (e) => {
@@ -42,8 +37,7 @@ const EducationInputItem = (props) => {
 
   const cancelEdit = () => {
     setEnteredSchoolName(props.name);
-    setEnteredSchoolCity(props.city);
-    setEnteredSchoolProvince(props.province);
+    setEnteredSchoolLocation(props.location);
     setEnteredDegree(props.degree);
     setEnteredDateFrom(props.dateFrom);
     setEnteredDateTo(props.dateTo);
@@ -54,8 +48,7 @@ const EducationInputItem = (props) => {
     const editedSchoolData = {
       id: props.id,
       name: inputSchoolName,
-      city: inputSchoolCity,
-      province: inputSchoolProvince,
+      location: inputSchoolLocation,
       degree: inputDegree,
       dateFrom: inputDateFrom,
       dateTo: inputDateTo,
@@ -76,15 +69,11 @@ const EducationInputItem = (props) => {
           />
         </div>
         <div className="row">
-          <label>City</label>
-          <input type="text" value={inputSchoolCity} onChange={cityHandler} />
-        </div>
-        <div className="row">
-          <label>Province</label>
+          <label>Location</label>
           <input
             type="text"
-            value={inputSchoolProvince}
-            onChange={provinceHandler}
+            value={inputSchoolLocation}
+            onChange={locationHandler}
           />
         </div>
         <div className="row">
@@ -112,16 +101,16 @@ const EducationInputItem = (props) => {
       <div className="form-row">
         <div className="row">
           <div className="form-row-1">
-            <p className="school-name">{inputSchoolName}</p>
+            <p className="item-header">{inputSchoolName}</p>
             <div className="form-icons">
               <div>
-                <span className="material-icons" onClick={startEditing}>
+                <span className="material-icons edit" onClick={startEditing}>
                   edit
                 </span>
               </div>
               <div>
                 <span
-                  className="material-icons"
+                  className="material-icons delete"
                   onClick={() => props.deleteSchoolHandler(props.id)}
                 >
                   delete
@@ -131,9 +120,7 @@ const EducationInputItem = (props) => {
           </div>
         </div>
         <div className="row">
-          <p>
-            {inputSchoolCity}, {inputSchoolProvince}
-          </p>
+          <p>{inputSchoolLocation}</p>
           {<p>{inputDegree || ''}</p>}
           <p>
             {inputDateFrom} to {inputDateTo}

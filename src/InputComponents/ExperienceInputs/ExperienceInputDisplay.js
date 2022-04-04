@@ -12,6 +12,7 @@ const ExperienceInputDisplay = (props) => {
         company={experience.company}
         dateFrom={experience.dateFrom}
         dateTo={experience.dateTo}
+        description={experience.description}
         deleteExperienceHandler={props.deleteExperience}
         editExperienceHandler={props.editExperience}
       />

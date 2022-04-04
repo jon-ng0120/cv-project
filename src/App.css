@@ -14,9 +14,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-family: 'Rubik', sans-serif;
   background-image: linear-gradient(
-    45deg,
-    var(--main-color),
-    var(--secondary-color)
+    to right,
+    var(--secondary-color),
+    var(--main-color)
   );
 }
 
@@ -53,6 +53,15 @@ body {
 
 .row input:focus {
   border: 2px solid var(--main-color);
+}
+
+.job-description {
+  resize: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 2px solid rgb(151, 151, 151);
+  outline: none;
+  background-color: rgb(248, 248, 248);
 }
 
 .long-button {

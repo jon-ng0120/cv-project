@@ -8,6 +8,7 @@ const ExperienceInputItem = (props) => {
   const [inputJobLocation, setEnteredJobLocation] = useState(props.location);
   const [inputDateFrom, setEnteredDateFrom] = useState(props.dateFrom);
   const [inputDateTo, setEnteredDateTo] = useState(props.dateTo);
+  const [inputDescription, setEnteredDescription] = useState(props.description);
 
   const startEditing = () => setIsEditing(true);
 
@@ -33,12 +34,17 @@ const ExperienceInputItem = (props) => {
     setEnteredDateTo(e.target.value);
   };
 
+  const descriptionHandler = (e) => {
+    setEnteredDescription(e.target.value);
+  };
+
   const cancelEdit = () => {
     setEnteredJobTitle(props.title);
     setEnteredJobLocation(props.location);
     setEnteredCompany(props.company);
     setEnteredDateFrom(props.dateFrom);
     setEnteredDateTo(props.dateTo);
+    setEnteredDescription(props.description);
     stopEditing();
   };
 
@@ -50,6 +56,7 @@ const ExperienceInputItem = (props) => {
       location: inputJobLocation,
       dateFrom: inputDateFrom,
       dateTo: inputDateTo,
+      description: inputDescription,
     };
     props.editExperienceHandler(props.id, editedExperienceData);
     stopEditing();
@@ -81,6 +88,16 @@ const ExperienceInputItem = (props) => {
         <div className="row">
           <label>Date To</label>
           <input type="date" value={inputDateTo} onChange={dateToHandler} />
+        </div>
+        <div className="row">
+          <label>Description</label>
+          <textarea
+            className="job-description"
+            value={inputDescription}
+            onChange={descriptionHandler}
+            rows="7"
+            placeholder="Describe your position"
+          ></textarea>
         </div>
         <button className="btn" type="button" onClick={experienceEditHandler}>
           Save
@@ -120,6 +137,7 @@ const ExperienceInputItem = (props) => {
           <p>
             {inputDateFrom} to {inputDateTo}
           </p>
+          <p>{inputDescription}</p>
         </div>
       </div>
     );

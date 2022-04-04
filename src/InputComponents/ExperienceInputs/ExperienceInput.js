@@ -7,6 +7,7 @@ const ExperienceInput = (props) => {
   const [enteredLocation, setEnteredLocation] = useState('');
   const [enteredDateFrom, setEnteredDateFrom] = useState('');
   const [enteredDateTo, setEnteredDateTo] = useState('');
+  const [enteredDescription, setEnteredDescription] = useState('');
 
   const titleHandler = (e) => {
     setEnteredtitle(e.target.value);
@@ -26,6 +27,10 @@ const ExperienceInput = (props) => {
     setEnteredDateTo(e.target.value);
   };
 
+  const descriptionHandler = (e) => {
+    setEnteredDescription(e.target.value);
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     const experienceData = {
@@ -35,6 +40,7 @@ const ExperienceInput = (props) => {
       company: enteredCompany,
       dateFrom: enteredDateFrom,
       dateTo: enteredDateTo,
+      description: enteredDescription,
     };
     props.onExperienceInputChange(experienceData);
     setEnteredtitle('');
@@ -42,6 +48,7 @@ const ExperienceInput = (props) => {
     setEnteredLocation('');
     setEnteredDateFrom('');
     setEnteredDateTo('');
+    setEnteredDescription('');
     endInput();
   };
 
@@ -51,6 +58,7 @@ const ExperienceInput = (props) => {
     setEnteredLocation('');
     setEnteredDateFrom('');
     setEnteredDateTo('');
+    setEnteredDescription('');
     endInput();
   };
 
@@ -100,6 +108,16 @@ const ExperienceInput = (props) => {
           <div className="row">
             <label>Date To</label>
             <input type="date" onChange={dateToHandler} value={enteredDateTo} />
+          </div>
+          <div className="row">
+            <label>Description</label>
+            <textarea
+              className="job-description"
+              rows="7"
+              placeholder="Describe your position"
+              onChange={descriptionHandler}
+              value={enteredDescription}
+            ></textarea>
           </div>
           <button className="btn">Save</button>
           <button type="button" onClick={cancelInput} className="btn">

@@ -4,8 +4,7 @@ const EducationItem = (props) => {
   return (
     <div>
       <div>
-        <p>Job Name</p>
-        <p>{props.name}</p>
+        <p className="item-header">{props.name}</p>
       </div>
       <div>
         <p>Degree</p>

@@ -4,6 +4,7 @@ const GeneralInput = (props) => {
   const [generalData, setGeneralData] = useState({
     firstName: '',
     lastName: '',
+    street: '',
     city: '',
     province: '',
     postal: '',
@@ -43,6 +44,16 @@ const GeneralInput = (props) => {
           name="lastName"
           placeholder="Smith"
           value={generalData.lastName}
+          onChange={generalDataHandler}
+        />
+      </div>
+      <div className="row">
+        <label>Street</label>
+        <input
+          type="text"
+          name="street"
+          placeholder="Fake St"
+          value={generalData.street}
           onChange={generalDataHandler}
         />
       </div>

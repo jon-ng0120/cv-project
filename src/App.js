@@ -87,10 +87,13 @@ const App = () => {
           editExperience={editExperienceHandler}
         />
       </div>
-
-      <GeneralDisplay generalData={generalInputData} />
-      <EducationDisplay educationData={educationInputData} />
-      <ExperienceDisplay experienceData={experienceInputData} />
+      <div id="display-container">
+        <GeneralDisplay generalData={generalInputData} />
+        <p className="header">EDUCATION</p>
+        <EducationDisplay educationData={educationInputData} />
+        <p className="header">PROFESSIONAL EXPERIENCE</p>
+        <ExperienceDisplay experienceData={experienceInputData} />
+      </div>
     </div>
   );
 };

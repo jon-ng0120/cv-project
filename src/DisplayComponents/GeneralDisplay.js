@@ -2,14 +2,34 @@ import React from 'react';
 
 const GeneralDisplay = (props) => {
   return (
-    <div>
-      <div>{props.generalData.firstName}</div>
-      <div>{props.generalData.lastName}</div>
-      <div>{props.generalData.city}</div>
-      <div>{props.generalData.province}</div>
-      <div>{props.generalData.postal}</div>
-      <div>{props.generalData.phone}</div>
-      <div>{props.generalData.email}</div>
+    <div id="contact-container">
+      <p id="name-container">
+        {props.generalData.firstName} {props.generalData.lastName}
+      </p>
+      <div id="contact-info">
+        <div>
+          <span className="material-icons">call</span>
+          <p>{props.generalData.phone}</p>
+        </div>
+        <div>
+          <span className="material-icons">email</span>
+          <p>{props.generalData.email}</p>
+        </div>
+        <div id="address">
+          <div>
+            <span className="material-icons">
+              <span className="material-icons-outlined">location_on</span>
+            </span>
+          </div>
+          <div>
+            <p>{props.generalData.street}</p>
+            <p>
+              {props.generalData.city} {props.generalData.province}{' '}
+              {props.generalData.postal}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

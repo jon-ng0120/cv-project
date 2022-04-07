@@ -32,6 +32,15 @@ body {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+#display-container {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  max-width: 50rem;
+  margin: auto;
+  padding: 2rem 5rem;
+}
+
 .row {
   display: flex;
   flex-direction: column;
@@ -159,4 +168,44 @@ body {
 .btn:hover {
   background-color: var(--secondary-color);
   color: #fff;
+}
+
+#name-container {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 3rem;
+}
+
+#contact-container {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+#contact-info div {
+  display: flex;
+  align-items: center;
+}
+
+#address {
+  line-height: 0;
+}
+
+#address div:nth-child(2) {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.material-icons {
+  margin-right: 1rem;
+  color: var(--main-color);
+}
+
+.header {
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--main-color);
+  border-top: 2px solid var(--main-color);
+  border-bottom: 2px solid var(--main-color);
 }

@@ -71,6 +71,7 @@ body {
   border: 2px solid rgb(151, 151, 151);
   outline: none;
   background-color: rgb(248, 248, 248);
+  width: 95%;
 }
 
 .long-button {
@@ -117,10 +118,6 @@ body {
   justify-content: space-between;
 }
 
-.form-row div {
-  line-height: 0.6rem;
-}
-
 .form-icons {
   display: flex;
   align-items: center;
@@ -152,6 +149,11 @@ body {
 
 .item-header {
   font-weight: bold;
+  margin-right: 0.3rem;
+}
+
+.education-row .item-header::after {
+  content: ' | ';
 }
 
 .btn {
@@ -173,7 +175,7 @@ body {
 #name-container {
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 3rem;
+  font-size: 3.2rem;
 }
 
 #contact-container {
@@ -182,13 +184,13 @@ body {
   font-weight: bold;
 }
 
+#contact-info {
+  line-height: 0;
+}
+
 #contact-info div {
   display: flex;
   align-items: center;
-}
-
-#address {
-  line-height: 0;
 }
 
 #address div:nth-child(2) {
@@ -197,8 +199,11 @@ body {
 }
 
 .material-icons {
-  margin-right: 1rem;
   color: var(--main-color);
+}
+
+#contact-info .material-icons {
+  margin-right: 1rem;
 }
 
 .header {
@@ -208,4 +213,58 @@ body {
   color: var(--main-color);
   border-top: 2px solid var(--main-color);
   border-bottom: 2px solid var(--main-color);
+}
+
+.education-container {
+  line-height: 0;
+}
+
+.education-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-row div:nth-child(1) {
+  display: flex;
+}
+
+.highlight {
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.experience-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-item div:not(:last-child) {
+  display: flex;
+  line-height: 0;
+  justify-content: space-between;
+}
+
+.job-description-display {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  font-family: 'Anton', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.job-description-display:hover {
+  cursor: text;
 }

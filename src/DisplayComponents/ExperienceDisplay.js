@@ -1,14 +1,17 @@
 import React from 'react';
-import ExperienceItem from '../InputComponents/ExperienceInputs/ExperienceItem';
+import ExperienceItem from './ExperienceItem';
 
 const ExperienceDisplay = (props) => {
   const experienceList = props.experienceData.map((experience) => {
     return (
       <ExperienceItem
         key={experience.id}
-        title={experience.title}
         company={experience.company}
+        title={experience.title}
+        location={experience.location}
         dateFrom={experience.dateFrom}
+        dateTo={experience.dateTo}
+        description={experience.description}
       />
     );
   });

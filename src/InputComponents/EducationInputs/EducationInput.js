@@ -105,7 +105,7 @@ const EducationInput = (props) => {
             <label>Date To</label>
             <input type="date" onChange={dateToHandler} value={enteredDateTo} />
           </div>
-          <button className="btn">Save</button>
+          <button className="btn">Save Education</button>
           <button type="button" onClick={cancelInput} className="btn">
             Cancel
           </button>

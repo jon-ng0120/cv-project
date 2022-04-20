@@ -119,7 +119,7 @@ const ExperienceInput = (props) => {
               value={enteredDescription}
             ></textarea>
           </div>
-          <button className="btn">Save</button>
+          <button className="btn">Add Experience</button>
           <button type="button" onClick={cancelInput} className="btn">
             Cancel
           </button>

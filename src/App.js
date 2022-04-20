@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import GeneralInput from './InputComponents/GeneralInput';
+import SkillsInput from './InputComponents/SkillInputs/SkillsInput';
 import EducationInput from './InputComponents/EducationInputs/EducationInput';
 import EducationInputDisplay from './InputComponents/EducationInputs/EducationInputDisplay';
 import GeneralDisplay from './DisplayComponents/GeneralDisplay';
@@ -10,12 +11,36 @@ import EducationDisplay from './DisplayComponents/EducationDisplay';
 import ExperienceDisplay from './DisplayComponents/ExperienceDisplay';
 import ExperienceInput from './InputComponents/ExperienceInputs/ExperienceInput';
 import ExperienceInputDisplay from './InputComponents/ExperienceInputs/ExperienceInputDisplay';
+import SkillsInputDisplay from './InputComponents/SkillInputs/SkillsInputDisplay';
 
 const App = () => {
   // GENERAL COMPONENTS HANDLERS
   const [generalInputData, setGeneralInputData] = useState('');
   const generalInputHandler = (generalData) => {
     setGeneralInputData(generalData);
+  };
+
+  // SKILLS COMPONENTS HANDLER
+  const [skillsInputData, setSkillsInputData] = useState([]);
+
+  const skillsInputHandler = (skillsData) => {
+    setSkillsInputData((prevSkills) => {
+      return [...prevSkills, skillsData];
+    });
+  };
+
+  const editSkillHandler = (skillId, skillData) => {
+    const skillsList = skillsInputData;
+    const updatedSkillsList = skillsList.map((skill) =>
+      skill.id === skillId ? { ...skill, ...skillData } : skill
+    );
+    setSkillsInputData(updatedSkillsList);
+  };
+
+  const deleteSkillsHandler = (skillsId) => {
+    const skillsList = skillsInputData;
+    const newSkillsList = skillsList.filter((skill) => skill.id !== skillsId);
+    setSkillsInputData(newSkillsList);
   };
 
   // EDUCATION COMPONENTS HANDLERS
@@ -73,13 +98,25 @@ const App = () => {
   return (
     <div id="main-container">
       <div id="inputs-container">
+        {/* GENERAL INPUT */}
         <GeneralInput onGeneralInputChange={generalInputHandler} />
+
+        {/* SKILLS INPUT */}
+        <SkillsInput onSkillsInputChange={skillsInputHandler} />
+        <SkillsInputDisplay
+          skillsData={skillsInputData}
+          editSkill={editSkillHandler}
+          deleteSkill={deleteSkillsHandler}
+        />
+        {/* EDUCATION INPUT */}
         <EducationInput onEducationInputChange={educationInputHandler} />
         <EducationInputDisplay
           educationData={educationInputData}
           deleteSchool={deleteEducationHandler}
           editSchool={editEducationHandler}
         />
+
+        {/* EXPERIENCE INPUT */}
         <ExperienceInput onExperienceInputChange={experienceInputHandler} />
         <ExperienceInputDisplay
           experienceData={experienceInputData}

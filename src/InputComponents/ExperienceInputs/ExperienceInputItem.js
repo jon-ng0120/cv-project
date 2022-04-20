@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
 
 const ExperienceInputItem = (props) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -137,7 +138,11 @@ const ExperienceInputItem = (props) => {
           <p>
             {inputDateFrom} to {inputDateTo}
           </p>
-          <p>{inputDescription}</p>
+          <TextareaAutosize
+            className="job-description-display "
+            value={inputDescription}
+            readOnly
+          />
         </div>
       </div>
     );

@@ -12,6 +12,7 @@ import ExperienceDisplay from './DisplayComponents/ExperienceDisplay';
 import ExperienceInput from './InputComponents/ExperienceInputs/ExperienceInput';
 import ExperienceInputDisplay from './InputComponents/ExperienceInputs/ExperienceInputDisplay';
 import SkillsInputDisplay from './InputComponents/SkillInputs/SkillsInputDisplay';
+import SkillsDisplay from './DisplayComponents/SkillsDisplay';
 
 const App = () => {
   // GENERAL COMPONENTS HANDLERS
@@ -126,10 +127,12 @@ const App = () => {
       </div>
       <div id="display-container">
         <GeneralDisplay generalData={generalInputData} />
-        <p className="header">EDUCATION</p>
-        <EducationDisplay educationData={educationInputData} />
+        <p className="header">SKILLS</p>
+        <SkillsDisplay skillsData={skillsInputData} />
         <p className="header">PROFESSIONAL EXPERIENCE</p>
         <ExperienceDisplay experienceData={experienceInputData} />
+        <p className="header">EDUCATION</p>
+        <EducationDisplay educationData={educationInputData} />
       </div>
     </div>
   );

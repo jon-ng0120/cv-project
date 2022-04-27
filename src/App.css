@@ -235,7 +235,6 @@ body {
 
 .uppercase {
   text-transform: uppercase;
-  letter-spacing: 0.2rem;
 }
 
 .bold {
@@ -245,6 +244,7 @@ body {
 .experience-item {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0.5rem;
 }
 
 .experience-item div:not(:last-child) {
@@ -267,4 +267,12 @@ body {
 
 .job-description-display:hover {
   cursor: text;
+}
+
+#skills-container ul {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 33%);
 }

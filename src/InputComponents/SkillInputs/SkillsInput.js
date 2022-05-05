@@ -29,7 +29,7 @@ const SkillsInput = (props) => {
 
   return (
     <div>
-      <h1>Skills</h1>
+      <h1 className="section-header">Skills</h1>
       {isNew && (
         <div className="long-button" onClick={startInput}>
           <span>+</span>

@@ -13,8 +13,15 @@ import ExperienceInput from './InputComponents/ExperienceInputs/ExperienceInput'
 import ExperienceInputDisplay from './InputComponents/ExperienceInputs/ExperienceInputDisplay';
 import SkillsInputDisplay from './InputComponents/SkillInputs/SkillsInputDisplay';
 import SkillsDisplay from './DisplayComponents/SkillsDisplay';
+import ToggleButton from './ToggleButton';
 
 const App = () => {
+  // TOGGLE PREVIEW HANDLERS
+  const [isPreview, setIsPreview] = useState(false);
+  const setPreviewHandler = () => {
+    isPreview ? setIsPreview(false) : setIsPreview(true);
+  };
+
   // GENERAL COMPONENTS HANDLERS
   const [generalInputData, setGeneralInputData] = useState('');
   const generalInputHandler = (generalData) => {
@@ -98,41 +105,57 @@ const App = () => {
 
   return (
     <div id="main-container">
-      <div id="inputs-container">
-        {/* GENERAL INPUT */}
-        <GeneralInput onGeneralInputChange={generalInputHandler} />
-
-        {/* SKILLS INPUT */}
-        <SkillsInput onSkillsInputChange={skillsInputHandler} />
-        <SkillsInputDisplay
-          skillsData={skillsInputData}
-          editSkill={editSkillHandler}
-          deleteSkill={deleteSkillsHandler}
-        />
-        {/* EDUCATION INPUT */}
-        <EducationInput onEducationInputChange={educationInputHandler} />
-        <EducationInputDisplay
-          educationData={educationInputData}
-          deleteSchool={deleteEducationHandler}
-          editSchool={editEducationHandler}
-        />
-
-        {/* EXPERIENCE INPUT */}
-        <ExperienceInput onExperienceInputChange={experienceInputHandler} />
-        <ExperienceInputDisplay
-          experienceData={experienceInputData}
-          deleteExperience={deleteExperienceHandler}
-          editExperience={editExperienceHandler}
-        />
+      <div id="header">
+        <span className="material-icons">article</span>
+        <h1>Resume Builder</h1>
       </div>
-      <div id="display-container">
-        <GeneralDisplay generalData={generalInputData} />
-        <p className="header">SKILLS</p>
-        <SkillsDisplay skillsData={skillsInputData} />
-        <p className="header">PROFESSIONAL EXPERIENCE</p>
-        <ExperienceDisplay experienceData={experienceInputData} />
-        <p className="header">EDUCATION</p>
-        <EducationDisplay educationData={educationInputData} />
+
+      <div id="forms-container">
+        <ToggleButton onPreviewChange={setPreviewHandler} />
+
+        {/* INPUTS CONTAINER */}
+        {!isPreview && (
+          <div id="inputs-container">
+            {/* GENERAL INPUT */}
+            <GeneralInput onGeneralInputChange={generalInputHandler} />
+
+            {/* SKILLS INPUT */}
+            <SkillsInput onSkillsInputChange={skillsInputHandler} />
+            <SkillsInputDisplay
+              skillsData={skillsInputData}
+              editSkill={editSkillHandler}
+              deleteSkill={deleteSkillsHandler}
+            />
+            {/* EDUCATION INPUT */}
+            <EducationInput onEducationInputChange={educationInputHandler} />
+            <EducationInputDisplay
+              educationData={educationInputData}
+              deleteSchool={deleteEducationHandler}
+              editSchool={editEducationHandler}
+            />
+
+            {/* EXPERIENCE INPUT */}
+            <ExperienceInput onExperienceInputChange={experienceInputHandler} />
+            <ExperienceInputDisplay
+              experienceData={experienceInputData}
+              deleteExperience={deleteExperienceHandler}
+              editExperience={editExperienceHandler}
+            />
+          </div>
+        )}
+
+        {/* DISPLAY CONTAINER */}
+        {isPreview && (
+          <div id="display-container">
+            <GeneralDisplay generalData={generalInputData} />
+            <p className="header">SKILLS</p>
+            <SkillsDisplay skillsData={skillsInputData} />
+            <p className="header">PROFESSIONAL EXPERIENCE</p>
+            <ExperienceDisplay experienceData={experienceInputData} />
+            <p className="header">EDUCATION</p>
+            <EducationDisplay educationData={educationInputData} />
+          </div>
+        )}
       </div>
     </div>
   );

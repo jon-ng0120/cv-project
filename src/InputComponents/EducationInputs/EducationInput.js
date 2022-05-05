@@ -63,7 +63,7 @@ const EducationInput = (props) => {
 
   return (
     <div>
-      <h1>Education</h1>
+      <h1 className="section-header">Education</h1>
       {isNew && (
         <div className="long-button" onClick={startInput}>
           <span>+</span>

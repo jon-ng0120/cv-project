@@ -68,7 +68,7 @@ const ExperienceInput = (props) => {
 
   return (
     <div>
-      <h1>Experience</h1>
+      <h1 className="section-header">Experience</h1>
       {isNew && (
         <div className="long-button" onClick={startInput}>
           <span>+</span>

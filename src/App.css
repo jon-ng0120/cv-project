@@ -13,32 +13,48 @@ body {
   font-family: 'Anton', sans-serif;
   font-family: 'Open Sans', sans-serif;
   font-family: 'Rubik', sans-serif;
-  background-image: linear-gradient(
-    to right,
-    var(--secondary-color),
-    var(--main-color)
-  );
+  background-color: #e7edf3;
 }
 
-#main-container {
-  width: 95%;
-  margin: auto;
+#header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  margin: 1.2rem 0;
+}
+
+#header .material-icons {
+  font-size: 4.5rem;
+  margin-right: 0.3rem;
+}
+
+#forms-container {
+  border-top: 10px solid var(--main-color);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  border-radius: 5px;
 }
 
 #inputs-container {
   padding: 1rem 1.5rem;
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 2rem 0;
 }
 
 #display-container {
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   max-width: 50rem;
   margin: auto;
   padding: 2rem 5rem;
+}
+
+#general-input .row {
+  margin-bottom: 0.4rem;
+}
+
+.section-header {
+  font-weight: 600;
+  border-bottom: 2px solid var(--main-color);
+  padding-bottom: 0.5rem;
 }
 
 .row {
@@ -49,15 +65,17 @@ body {
 .row label {
   margin-bottom: 0.3rem;
   font-weight: bold;
+  color: rgb(49, 49, 49);
 }
 
 .row input {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 5px;
-  border: 2px solid rgb(151, 151, 151);
   outline: none;
-  background-color: rgb(248, 248, 248);
+  background-color: #fffffff8;
+  border: 1px solid #c4c4c4;
+  box-shadow: inset 0 2px 3px 0 hsl(0, 0%, 0%, 0.08);
 }
 
 .row input:focus {
@@ -67,11 +85,12 @@ body {
 .job-description {
   resize: none;
   padding: 0.5rem;
-  border-radius: 5px;
-  border: 2px solid rgb(151, 151, 151);
   outline: none;
-  background-color: rgb(248, 248, 248);
-  width: 95%;
+  width: auto;
+  box-shadow: inset 0 2px 3px 0 hsl(0, 0%, 0%, 0.08);
+  background-color: #fffffff8;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
 }
 
 .long-button {
@@ -107,10 +126,7 @@ body {
 }
 
 .form-row {
-  border-top: 2px solid var(--main-color);
-  border-bottom: 2px solid var(--main-color);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .form-row-1 {
@@ -270,9 +286,64 @@ body {
 }
 
 #skills-container ul {
-  list-style-type: none;
-  padding: 0;
   display: grid;
   gap: 0.5rem;
-  grid-template-columns: repeat(3, 33%);
+  grid-template-columns: repeat(4, auto);
+}
+
+.toggle-container {
+  text-align: center;
+  background-color: rgba(219, 219, 219, 0.72);
+  padding: 1.5rem 0;
+}
+
+.toggle-container p {
+  margin-top: 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.77);
+}
+
+.toggle {
+  --width: 4rem;
+  --height: calc(var(--width) / 2);
+  --border-radius: calc(var(--height) / 2);
+  display: inline-block;
+  cursor: pointer;
+}
+
+.toggle__input {
+  display: none;
+}
+
+.toggle__fill {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--border-radius);
+  background: rgb(210, 218, 221);
+  transition: background 0.3s;
+  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.toggle__input:checked ~ .toggle__fill {
+  background: #0272619b;
+}
+
+.toggle__fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--height);
+  width: var(--height);
+  border-radius: var(--border-radius);
+  /* background-color: #fff; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s;
+  background-color: var(--main-color);
+}
+
+.toggle__input:checked ~ .toggle__fill::after {
+  transform: translateX(var(--height));
 }

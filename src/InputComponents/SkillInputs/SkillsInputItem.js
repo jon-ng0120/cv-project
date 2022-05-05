@@ -43,7 +43,7 @@ const SkillsInputItem = (props) => {
       <div className="form-row">
         <div className="row">
           <div className="form-row-1">
-            <p className="item-header">{inputSkill}</p>
+            <p>{inputSkill}</p>
             <div className="form-icons">
               <div>
                 <span className="material-icons edit" onClick={startEditing}>

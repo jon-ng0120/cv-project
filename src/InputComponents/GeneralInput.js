@@ -26,7 +26,7 @@ const GeneralInput = (props) => {
 
   return (
     <div id="general-input">
-      <h1>Contact Info</h1>
+      <h1 className="section-header">Contact Info</h1>
       <div className="row">
         <label>First Name</label>
         <input

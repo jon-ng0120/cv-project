@@ -16,11 +16,8 @@ const GeneralDisplay = (props) => {
           <p>{props.generalData.email}</p>
         </div>
         <div id="address">
-          <div>
-            <span className="material-icons">
-              <span className="material-icons-outlined">location_on</span>
-            </span>
-          </div>
+          <span className="material-icons">location_on</span>
+
           <div>
             <p>{props.generalData.street}</p>
             <p>

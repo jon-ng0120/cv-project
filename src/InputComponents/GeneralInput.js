@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 const GeneralInput = (props) => {
+  const demographicData = props.generalData;
   const [generalData, setGeneralData] = useState({
-    firstName: '',
-    lastName: '',
-    street: '',
-    city: '',
-    province: '',
-    postal: '',
-    phone: '',
-    email: '',
+    firstName: demographicData.firstName || '',
+    lastName: demographicData.lastName || '',
+    street: demographicData.street || '',
+    city: demographicData.city || '',
+    province: demographicData.province || '',
+    postal: demographicData.postal || '',
+    phone: demographicData.phone || '',
+    email: demographicData.email || '',
   });
 
   const generalDataHandler = (e) => {

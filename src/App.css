@@ -13,7 +13,7 @@ body {
   font-family: 'Anton', sans-serif;
   font-family: 'Open Sans', sans-serif;
   font-family: 'Rubik', sans-serif;
-  background-color: #e7edf3;
+  background-color: #f3f3f3;
 }
 
 #header {
@@ -42,9 +42,10 @@ body {
 }
 
 #display-container {
-  max-width: 50rem;
+  width: 176mm;
   margin: auto;
-  padding: 2rem 5rem;
+  padding: 4rem;
+  font-size: 0.75rem;
 }
 
 #general-input .row {
@@ -206,12 +207,11 @@ body {
 
 #contact-info div {
   display: flex;
-  align-items: center;
+  margin-bottom: 0.6rem;
 }
 
-#address div:nth-child(2) {
+#address div {
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .material-icons {

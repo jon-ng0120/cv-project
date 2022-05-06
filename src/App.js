@@ -1,4 +1,6 @@
 // App.js
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 import React, { useState } from 'react';
 import './App.css';
@@ -20,6 +22,7 @@ const App = () => {
   const [isPreview, setIsPreview] = useState(false);
   const setPreviewHandler = () => {
     isPreview ? setIsPreview(false) : setIsPreview(true);
+    // console.log(generalInputData);
   };
 
   // GENERAL COMPONENTS HANDLERS
@@ -103,6 +106,17 @@ const App = () => {
     setExperienceInputData(newExperienceList);
   };
 
+  const toPdf = () => {
+    const input = document.getElementById('display-container');
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, 'PNG', 0, 0);
+      pdf.save('download.pdf');
+    });
+  };
+
   return (
     <div id="main-container">
       <div id="header">
@@ -117,7 +131,10 @@ const App = () => {
         {!isPreview && (
           <div id="inputs-container">
             {/* GENERAL INPUT */}
-            <GeneralInput onGeneralInputChange={generalInputHandler} />
+            <GeneralInput
+              onGeneralInputChange={generalInputHandler}
+              generalData={generalInputData}
+            />
 
             {/* SKILLS INPUT */}
             <SkillsInput onSkillsInputChange={skillsInputHandler} />
@@ -154,6 +171,7 @@ const App = () => {
             <ExperienceDisplay experienceData={experienceInputData} />
             <p className="header">EDUCATION</p>
             <EducationDisplay educationData={educationInputData} />
+            <button onClick={toPdf}>Click</button>
           </div>
         )}
       </div>

@@ -20,9 +20,15 @@ import ToggleButton from './ToggleButton';
 const App = () => {
   // TOGGLE PREVIEW HANDLERS
   const [isPreview, setIsPreview] = useState(false);
+  const [canExport, setCanExport] = useState(false);
   const setPreviewHandler = () => {
-    isPreview ? setIsPreview(false) : setIsPreview(true);
-    // console.log(generalInputData);
+    if (isPreview) {
+      setIsPreview(false);
+      setCanExport(false);
+    } else {
+      setIsPreview(true);
+      setCanExport(true);
+    }
   };
 
   // GENERAL COMPONENTS HANDLERS
@@ -107,13 +113,13 @@ const App = () => {
   };
 
   const toPdf = () => {
-    const input = document.getElementById('display-container');
+    const input = document.querySelector('#display-container');
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
 
       const pdf = new jsPDF();
       pdf.addImage(imgData, 'PNG', 0, 0);
-      pdf.save('download.pdf');
+      pdf.save('Resume.pdf');
     });
   };
 
@@ -125,7 +131,11 @@ const App = () => {
       </div>
 
       <div id="forms-container">
-        <ToggleButton onPreviewChange={setPreviewHandler} />
+        <ToggleButton
+          onPreviewChange={setPreviewHandler}
+          onPdfClick={toPdf}
+          canExportPdf={canExport}
+        />
 
         {/* INPUTS CONTAINER */}
         {!isPreview && (
@@ -171,7 +181,6 @@ const App = () => {
             <ExperienceDisplay experienceData={experienceInputData} />
             <p className="header">EDUCATION</p>
             <EducationDisplay educationData={educationInputData} />
-            <button onClick={toPdf}>Click</button>
           </div>
         )}
       </div>

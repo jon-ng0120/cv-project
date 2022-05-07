@@ -347,3 +347,24 @@ body {
 .toggle__input:checked ~ .toggle__fill::after {
   transform: translateX(var(--height));
 }
+
+@media only screen and (min-width: 481px) {
+  #main-container {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  #main-container {
+    width: 70%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #main-container {
+    width: 62.5rem;
+    margin: auto;
+  }
+}

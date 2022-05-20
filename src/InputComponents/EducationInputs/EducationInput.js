@@ -1,65 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const EducationInput = (props) => {
   const [isNew, setIsNew] = useState(true);
-  const [enteredSchoolName, setEnteredSchoolName] = useState('');
-  const [enteredDegree, setEnteredDegree] = useState('');
-  const [enteredLocation, setEnteredLocation] = useState('');
-  const [enteredDateFrom, setEnteredDateFrom] = useState('');
-  const [enteredDateTo, setEnteredDateTo] = useState('');
 
-  const schoolNameHandler = (e) => {
-    setEnteredSchoolName(e.target.value);
-  };
-
-  const degreeHandler = (e) => {
-    setEnteredDegree(e.target.value);
-  };
-  const locationHandler = (e) => {
-    setEnteredLocation(e.target.value);
-  };
-  // const provinceHandler = (e) => {
-  //   setEnteredProvince(e.target.value);
-  // };
-
-  const dateFromHandler = (e) => {
-    setEnteredDateFrom(e.target.value);
-  };
-  const dateToHandler = (e) => {
-    setEnteredDateTo(e.target.value);
-  };
+  const schoolNameRef = useRef();
+  const degreeRef = useRef();
+  const schoolLocationRef = useRef();
+  const schoolDateFromRef = useRef();
+  const schoolDateToRef = useRef();
 
   const submitHandler = (e) => {
     e.preventDefault();
     const schoolData = {
       id: Date.now(),
-      name: enteredSchoolName,
-      location: enteredLocation,
-      degree: enteredDegree,
-      dateFrom: enteredDateFrom,
-      dateTo: enteredDateTo,
+      name: schoolNameRef.current.value,
+      location: schoolLocationRef.current.value,
+      degree: degreeRef.current.value,
+      dateFrom: schoolDateFromRef.current.value,
+      dateTo: schoolDateToRef.current.value,
     };
     props.onEducationInputChange(schoolData);
-    setEnteredSchoolName('');
-    setEnteredDegree('');
-    setEnteredLocation('');
-    setEnteredDateFrom('');
-    setEnteredDateTo('');
     endInput();
   };
 
   const cancelInput = () => {
-    setEnteredSchoolName('');
-    setEnteredDegree('');
-    setEnteredLocation('');
-    setEnteredDateFrom('');
-    setEnteredDateTo('');
     endInput();
   };
 
   const startInput = () => setIsNew(false);
 
   const endInput = () => setIsNew(true);
+
+  useEffect(() => {
+    if (!isNew) {
+      schoolNameRef.current.focus();
+    }
+  });
 
   return (
     <div>
@@ -74,36 +50,24 @@ const EducationInput = (props) => {
         <form onSubmit={submitHandler} className="form-input">
           <div className="row">
             <label>School Name</label>
-            <input
-              type="text"
-              onChange={schoolNameHandler}
-              value={enteredSchoolName}
-            />
+            <input type="text" ref={schoolNameRef} />
           </div>
           <div className="row">
             <label>Degree</label>
-            <input type="text" onChange={degreeHandler} value={enteredDegree} />
+            <input type="text" ref={degreeRef} />
           </div>
           <div className="row">
             <label>Location</label>
-            <input
-              type="text"
-              onChange={locationHandler}
-              value={enteredLocation}
-            />
+            <input type="text" ref={schoolLocationRef} />
           </div>
 
           <div className="row">
             <label>Date From</label>
-            <input
-              type="date"
-              onChange={dateFromHandler}
-              value={enteredDateFrom}
-            />
+            <input type="date" ref={schoolDateFromRef} />
           </div>
           <div className="row">
             <label>Date To</label>
-            <input type="date" onChange={dateToHandler} value={enteredDateTo} />
+            <input type="date" ref={schoolDateToRef} />
           </div>
           <button className="btn">Save Education</button>
           <button type="button" onClick={cancelInput} className="btn">

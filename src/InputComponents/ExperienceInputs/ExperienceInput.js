@@ -1,70 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const ExperienceInput = (props) => {
   const [isNew, setIsNew] = useState(true);
-  const [enteredtitle, setEnteredtitle] = useState('');
-  const [enteredCompany, setEnteredCompany] = useState('');
-  const [enteredLocation, setEnteredLocation] = useState('');
-  const [enteredDateFrom, setEnteredDateFrom] = useState('');
-  const [enteredDateTo, setEnteredDateTo] = useState('');
-  const [enteredDescription, setEnteredDescription] = useState('');
-
-  const titleHandler = (e) => {
-    setEnteredtitle(e.target.value);
-  };
-
-  const companyHandler = (e) => {
-    setEnteredCompany(e.target.value);
-  };
-  const locationHandler = (e) => {
-    setEnteredLocation(e.target.value);
-  };
-
-  const dateFromHandler = (e) => {
-    setEnteredDateFrom(e.target.value);
-  };
-  const dateToHandler = (e) => {
-    setEnteredDateTo(e.target.value);
-  };
-
-  const descriptionHandler = (e) => {
-    setEnteredDescription(e.target.value);
-  };
+  const titleRef = useRef();
+  const companyRef = useRef();
+  const jobLocationRef = useRef();
+  const jobDateFromRef = useRef();
+  const jobDateToRef = useRef();
+  const jobDescription = useRef();
 
   const submitHandler = (e) => {
     e.preventDefault();
     const experienceData = {
       id: Date.now(),
-      title: enteredtitle,
-      location: enteredLocation,
-      company: enteredCompany,
-      dateFrom: enteredDateFrom,
-      dateTo: enteredDateTo,
-      description: enteredDescription,
+      title: titleRef.current.value,
+      location: jobLocationRef.current.value,
+      company: companyRef.current.value,
+      dateFrom: jobDateFromRef.current.value,
+      dateTo: jobDateToRef.current.value,
+      description: jobDescription.current.value,
     };
     props.onExperienceInputChange(experienceData);
-    setEnteredtitle('');
-    setEnteredCompany('');
-    setEnteredLocation('');
-    setEnteredDateFrom('');
-    setEnteredDateTo('');
-    setEnteredDescription('');
     endInput();
   };
 
   const cancelInput = () => {
-    setEnteredtitle('');
-    setEnteredCompany('');
-    setEnteredLocation('');
-    setEnteredDateFrom('');
-    setEnteredDateTo('');
-    setEnteredDescription('');
     endInput();
   };
 
   const startInput = () => setIsNew(false);
 
   const endInput = () => setIsNew(true);
+
+  useEffect(() => {
+    if (!isNew) {
+      titleRef.current.focus();
+    }
+  });
 
   return (
     <div>
@@ -79,35 +51,23 @@ const ExperienceInput = (props) => {
         <form onSubmit={submitHandler} className="form-input">
           <div className="row">
             <label>Job Title</label>
-            <input type="text" onChange={titleHandler} value={enteredtitle} />
+            <input type="text" ref={titleRef} />
           </div>
           <div className="row">
             <label>Company</label>
-            <input
-              type="text"
-              onChange={companyHandler}
-              value={enteredCompany}
-            />
+            <input type="text" ref={companyRef} />
           </div>
           <div className="row">
             <label>Location</label>
-            <input
-              type="text"
-              onChange={locationHandler}
-              value={enteredLocation}
-            />
+            <input type="text" ref={jobLocationRef} />
           </div>
           <div className="row">
             <label>Date From</label>
-            <input
-              type="date"
-              onChange={dateFromHandler}
-              value={enteredDateFrom}
-            />
+            <input type="date" ref={jobDateFromRef} />
           </div>
           <div className="row">
             <label>Date To</label>
-            <input type="date" onChange={dateToHandler} value={enteredDateTo} />
+            <input type="date" ref={jobDateToRef} />
           </div>
           <div className="row">
             <label>Description</label>
@@ -115,8 +75,7 @@ const ExperienceInput = (props) => {
               className="job-description"
               rows="7"
               placeholder="Describe your position"
-              onChange={descriptionHandler}
-              value={enteredDescription}
+              ref={jobDescription}
             ></textarea>
           </div>
           <button className="btn">Add Experience</button>

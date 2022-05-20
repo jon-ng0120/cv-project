@@ -1,31 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const SkillsInput = (props) => {
   const [isNew, setIsNew] = useState(true);
-  const [enteredSkill, setEnteredSkill] = useState('');
-  const enteredSkillHandler = (e) => {
-    setEnteredSkill(e.target.value);
-  };
+  const skillRef = useRef();
 
   const skillSubmitHandler = (e) => {
     e.preventDefault();
+    const enteredSkill = skillRef.current.value;
     const skillsData = {
       id: Date.now(),
       skill: enteredSkill,
     };
     props.onSkillsInputChange(skillsData);
-    setEnteredSkill('');
     endInput();
   };
 
   const cancelInput = () => {
-    setEnteredSkill('');
     endInput();
   };
 
-  const startInput = () => setIsNew(false);
+  const startInput = () => {
+    setIsNew(false);
+  };
 
   const endInput = () => setIsNew(true);
+
+  useEffect(() => {
+    if (!isNew) {
+      skillRef.current.focus();
+    }
+  });
 
   return (
     <div>
@@ -40,7 +44,7 @@ const SkillsInput = (props) => {
         <form onSubmit={skillSubmitHandler} className="form-input">
           <div className="row">
             <label>Skill</label>
-            <input onChange={enteredSkillHandler} value={enteredSkill} />
+            <input ref={skillRef} />
           </div>
           <button className="btn">Add Skill</button>
           <button className="btn" onClick={cancelInput} type="button">

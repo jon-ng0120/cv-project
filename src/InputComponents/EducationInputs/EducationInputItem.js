@@ -10,6 +10,7 @@ const EducationInputItem = (props) => {
   const [inputDegree, setEnteredDegree] = useState(props.degree);
   const [inputDateFrom, setEnteredDateFrom] = useState(props.dateFrom);
   const [inputDateTo, setEnteredDateTo] = useState(props.dateTo);
+  const [current, setCurrent] = useState(props.current);
 
   const startEditing = () => setIsEditing(true);
 
@@ -41,6 +42,7 @@ const EducationInputItem = (props) => {
     setEnteredDegree(props.degree);
     setEnteredDateFrom(props.dateFrom);
     setEnteredDateTo(props.dateTo);
+    setCurrent(props.current);
     stopEditing();
   };
 
@@ -52,9 +54,20 @@ const EducationInputItem = (props) => {
       degree: inputDegree,
       dateFrom: inputDateFrom,
       dateTo: inputDateTo,
+      current: current,
     };
     props.editSchoolHandler(props.id, editedSchoolData);
     stopEditing();
+  };
+
+  const setCurrentlyAttend = (e) => {
+    if (e.target.checked) {
+      setEnteredDateTo('Current');
+      setCurrent(true);
+    } else {
+      setEnteredDateTo('');
+      setCurrent(false);
+    }
   };
 
   if (isEditing) {
@@ -85,9 +98,22 @@ const EducationInputItem = (props) => {
           <input type="date" value={inputDateFrom} onChange={dateFromHandler} />
         </div>
         <div className="row">
-          <label>Date To</label>
-          <input type="date" value={inputDateTo} onChange={dateToHandler} />
+          <div>
+            <input
+              type="checkbox"
+              value="current"
+              onClick={setCurrentlyAttend}
+              defaultChecked={current}
+            />
+            <label>I currently attend here</label>
+          </div>
         </div>
+        {!current && (
+          <div className="row">
+            <label>Date To</label>
+            <input type="date" value={inputDateTo} onChange={dateToHandler} />
+          </div>
+        )}
         <button className="btn" type="button" onClick={educationEditHandler}>
           Save
         </button>

@@ -114,6 +114,7 @@ const App = () => {
 
   const toPdf = () => {
     const input = document.querySelector('#display-container');
+
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
 

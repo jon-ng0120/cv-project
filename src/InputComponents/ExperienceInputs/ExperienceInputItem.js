@@ -10,6 +10,7 @@ const ExperienceInputItem = (props) => {
   const [inputDateFrom, setEnteredDateFrom] = useState(props.dateFrom);
   const [inputDateTo, setEnteredDateTo] = useState(props.dateTo);
   const [inputDescription, setEnteredDescription] = useState(props.description);
+  const [current, setCurrent] = useState(props.current);
 
   const startEditing = () => setIsEditing(true);
 
@@ -46,6 +47,7 @@ const ExperienceInputItem = (props) => {
     setEnteredDateFrom(props.dateFrom);
     setEnteredDateTo(props.dateTo);
     setEnteredDescription(props.description);
+    setCurrent(props.current);
     stopEditing();
   };
 
@@ -56,11 +58,22 @@ const ExperienceInputItem = (props) => {
       company: inputCompany,
       location: inputJobLocation,
       dateFrom: inputDateFrom,
+      current: current,
       dateTo: inputDateTo,
       description: inputDescription,
     };
     props.editExperienceHandler(props.id, editedExperienceData);
     stopEditing();
+  };
+
+  const setCurrentlyWork = (e) => {
+    if (e.target.checked) {
+      setEnteredDateTo('Current');
+      setCurrent(true);
+    } else {
+      setEnteredDateTo('');
+      setCurrent(false);
+    }
   };
 
   if (isEditing) {
@@ -85,6 +98,17 @@ const ExperienceInputItem = (props) => {
         <div className="row">
           <label>Date From</label>
           <input type="date" value={inputDateFrom} onChange={dateFromHandler} />
+        </div>
+        <div className="row">
+          <div>
+            <input
+              type="checkbox"
+              value="current"
+              onClick={setCurrentlyWork}
+              defaultChecked={current}
+            />
+            <label>I currently work here</label>
+          </div>
         </div>
         <div className="row">
           <label>Date To</label>

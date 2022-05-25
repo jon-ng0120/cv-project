@@ -12,6 +12,7 @@ const EducationInputDisplay = (props) => {
         degree={school.degree}
         dateFrom={school.dateFrom}
         dateTo={school.dateTo}
+        current={school.current}
         deleteSchoolHandler={props.deleteSchool}
         editSchoolHandler={props.editSchool}
       />

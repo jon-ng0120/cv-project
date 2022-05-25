@@ -6,8 +6,9 @@ const ExperienceInput = (props) => {
   const companyRef = useRef();
   const jobLocationRef = useRef();
   const jobDateFromRef = useRef();
-  const jobDateToRef = useRef();
+  const [jobDateTo, setJobDateTo] = useState('');
   const jobDescription = useRef();
+  const [current, setCurrent] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -17,9 +18,11 @@ const ExperienceInput = (props) => {
       location: jobLocationRef.current.value,
       company: companyRef.current.value,
       dateFrom: jobDateFromRef.current.value,
-      dateTo: jobDateToRef.current.value,
+      dateTo: jobDateTo,
       description: jobDescription.current.value,
+      current: current,
     };
+    setCurrent(false);
     props.onExperienceInputChange(experienceData);
     endInput();
   };
@@ -37,6 +40,18 @@ const ExperienceInput = (props) => {
       titleRef.current.focus();
     }
   });
+
+  const setCurrentlyWork = (e) => {
+    if (e.target.checked) {
+      setJobDateTo('Current');
+      setCurrent(true);
+    } else {
+      setJobDateTo('');
+      setCurrent(false);
+    }
+  };
+
+  const dateToHandler = (e) => setJobDateTo(e.target.value);
 
   return (
     <div>
@@ -66,9 +81,21 @@ const ExperienceInput = (props) => {
             <input type="date" ref={jobDateFromRef} />
           </div>
           <div className="row">
-            <label>Date To</label>
-            <input type="date" ref={jobDateToRef} />
+            <div>
+              <input
+                type="checkbox"
+                value="current"
+                onClick={setCurrentlyWork}
+              />
+              <label>I currently work here</label>
+            </div>
           </div>
+          {!current && (
+            <div className="row">
+              <label>Date To</label>
+              <input type="date" value={jobDateTo} onChange={dateToHandler} />
+            </div>
+          )}
           <div className="row">
             <label>Description</label>
             <textarea

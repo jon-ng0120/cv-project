@@ -7,7 +7,8 @@ const EducationInput = (props) => {
   const degreeRef = useRef();
   const schoolLocationRef = useRef();
   const schoolDateFromRef = useRef();
-  const schoolDateToRef = useRef();
+  const [schoolDateTo, setSchoolDateTo] = useState('');
+  const [current, setCurrent] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -17,8 +18,10 @@ const EducationInput = (props) => {
       location: schoolLocationRef.current.value,
       degree: degreeRef.current.value,
       dateFrom: schoolDateFromRef.current.value,
-      dateTo: schoolDateToRef.current.value,
+      dateTo: schoolDateTo,
+      current: current,
     };
+    setCurrent(false);
     props.onEducationInputChange(schoolData);
     endInput();
   };
@@ -36,6 +39,18 @@ const EducationInput = (props) => {
       schoolNameRef.current.focus();
     }
   });
+
+  const setCurrentlyAttend = (e) => {
+    if (e.target.checked) {
+      setSchoolDateTo('Current');
+      setCurrent(true);
+    } else {
+      setSchoolDateTo('');
+      setCurrent(false);
+    }
+  };
+
+  const dateToHandler = (e) => setSchoolDateTo(e.target.value);
 
   return (
     <div>
@@ -66,9 +81,26 @@ const EducationInput = (props) => {
             <input type="date" ref={schoolDateFromRef} />
           </div>
           <div className="row">
-            <label>Date To</label>
-            <input type="date" ref={schoolDateToRef} />
+            <div>
+              <input
+                type="checkbox"
+                value="current"
+                onClick={setCurrentlyAttend}
+              />
+              <label>I currently attend here</label>
+            </div>
           </div>
+          {!current && (
+            <div className="row">
+              <label>Date To</label>
+              <input
+                type="date"
+                value={schoolDateTo}
+                onChange={dateToHandler}
+              />
+            </div>
+          )}
+
           <button className="btn">Save Education</button>
           <button type="button" onClick={cancelInput} className="btn">
             Cancel
